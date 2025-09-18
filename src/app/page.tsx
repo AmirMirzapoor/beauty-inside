@@ -1,14 +1,15 @@
 "use client";
 
 import { useState, useEffect, type FC, type ReactNode } from "react";
-// Import the Next.js Image component
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { FiMenu, FiX, FiMapPin, FiPhone, FiMail } from "react-icons/fi";
 import { FaInstagram, FaTelegram, FaWhatsapp } from "react-icons/fa";
 import { GiHairStrands, GiSpikedDragonHead, GiLotus } from "react-icons/gi";
 import { TbBrandDaysCounter } from "react-icons/tb";
+import { fadeInUp, fadeIn, zoomIn, staggerContainer } from "../components/animations";
 
-// --- TYPE DEFINITIONS for improved type safety ---
+// --- TYPE DEFINITIONS ---
 type NavLink = {
   href: string;
   label: string;
@@ -25,7 +26,7 @@ type GalleryImage = {
   alt: string;
 };
 
-// --- DATA COLLECTIONS for a data-driven UI ---
+// --- DATA ---
 const navLinks: NavLink[] = [
   { href: "#home", label: "صفحه اصلی" },
   { href: "#services", label: "خدمات ما" },
@@ -70,19 +71,24 @@ const socialLinks = [
   { href: "#", icon: <FaWhatsapp size={24} />, label: "Whatsapp" },
 ];
 
-// --- REUSABLE COMPONENTS ---
+// --- COMPONENTS ---
 const SectionTitle: FC<{ title: string; subtitle: string }> = ({
   title,
   subtitle,
 }) => (
-  <div className="text-center mb-12">
+  <motion.div
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true }}
+    variants={fadeInUp}
+    transition={{ duration: 0.8 }}
+    className="text-center mb-12"
+  >
     <h2 className="text-3xl md:text-4xl font-bold text-dark-text">{title}</h2>
     <p className="text-gray-600 mt-2">{subtitle}</p>
     <div className="inline-block w-24 h-1 bg-gold mt-4 rounded-full"></div>
-  </div>
+  </motion.div>
 );
-
-// --- PAGE SECTIONS AS COMPONENTS ---
 
 const Header: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -96,21 +102,34 @@ const Header: FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white/80 backdrop-blur-lg shadow-md" : "bg-transparent"}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/80 backdrop-blur-lg shadow-md"
+          : "bg-transparent"
+      }`}
     >
       <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="#" className="text-2xl font-bold text-dark-text">
+        <motion.a
+          href="#"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-2xl font-bold text-dark-text"
+        >
           سالن زیبای درون
-        </a>
+        </motion.a>
         <div className="hidden md:flex items-center space-x-8 space-x-reverse">
-          {navLinks.map((link) => (
-            <a
+          {navLinks.map((link, i) => (
+            <motion.a
               key={link.href}
               href={link.href}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
               className="text-gray-700 hover:text-gold transition-colors duration-300"
             >
               {link.label}
-            </a>
+            </motion.a>
           ))}
         </div>
         <a
@@ -130,7 +149,12 @@ const Header: FC = () => {
         </div>
       </nav>
       {isMenuOpen && (
-        <div className="md:hidden bg-white/90 backdrop-blur-lg py-4">
+        <motion.div
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: "auto", opacity: 1 }}
+          transition={{ duration: 0.4 }}
+          className="md:hidden bg-white/90 backdrop-blur-lg py-4"
+        >
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -150,37 +174,52 @@ const Header: FC = () => {
               رزرو نوبت
             </a>
           </div>
-        </div>
+        </motion.div>
       )}
     </header>
   );
 };
 
 const HeroSection: FC = () => (
-  <section
-    id="home"
-    className="h-screen bg-cover bg-center flex items-center"
-    style={{
-      backgroundImage:
-        "url('https://placehold.co/1920x1080/FFF8F0/A0522D?text=Luxury+Salon')",
-    }}
-  >
+  <section id="home" className="relative h-screen flex items-center">
+    <Image
+      src="/images/hero.jpeg"
+      alt="پس زمینه سالن زیبایی"
+      fill
+      priority
+      className="object-cover"
+    />
     <div className="container mx-auto px-6 text-center md:text-right">
-      <div className="bg-black/20 backdrop-blur-sm p-10 rounded-2xl inline-block">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={fadeInUp}
+        transition={{ duration: 1 }}
+        className="bg-black/20 backdrop-blur-sm p-10 rounded-2xl inline-block"
+      >
         <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight">
           جایی که زیبایی شکوفا می‌شود
         </h1>
-        <p className="text-lg md:text-xl text-white mt-4 max-w-xl mx-auto md:mx-0">
+        <motion.p
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+          transition={{ delay: 0.5, duration: 1 }}
+          className="text-lg md:text-xl text-white mt-4 max-w-xl mx-auto md:mx-0"
+        >
           با خدمات تخصصی ما، زیبایی طبیعی خود را به اوج برسانید. درخششی بی‌نظیر
           در انتظار شماست.
-        </p>
+        </motion.p>
         <a
           href="#services"
-          className="mt-8 inline-block bg-gold text-white px-10 py-3 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
+          className="mt-8 inline-block bg-gold text-white px-10 py-3 rounded-full text-lg font-semibold
+          transition-all duration-300 shadow-xl 
+          hover:bg-opacity-90 hover:shadow-2xl hover:-translate-y-1"
         >
           خدمات ما را ببینید
         </a>
-      </div>
+
+      </motion.div>
     </div>
   </section>
 );
@@ -192,24 +231,32 @@ const ServicesSection: FC = () => (
         title="خدمات تخصصی ما"
         subtitle="با بالاترین کیفیت و جدیدترین متدها در خدمت شما هستیم."
       />
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <motion.div
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+      >
         {services.map((service, index) => (
           <div
             key={index}
-            className="bg-white/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 ease-out-expo text-center group"
+            className="bg-white/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg 
+                        text-center group transition-all duration-300 ease-out-expo 
+                        hover:shadow-2xl hover:-translate-y-2"
           >
             <div className="flex justify-center mb-4">
-              <div className="bg-gold/20 text-gold p-4 rounded-full group-hover:bg-gold group-hover:text-white transition-colors duration-300">
+              <div className="bg-gold/20 text-gold p-4 rounded-full 
+                              transition-colors duration-300 
+                              group-hover:bg-gold group-hover:text-white">
                 {service.icon}
               </div>
             </div>
-            <h3 className="text-xl font-bold mb-2 text-dark-text">
-              {service.title}
-            </h3>
+            <h3 className="text-xl font-bold mb-2 text-dark-text">{service.title}</h3>
             <p className="text-gray-600">{service.description}</p>
           </div>
         ))}
-      </div>
+      </motion.div>
     </div>
   </section>
 );
@@ -217,7 +264,14 @@ const ServicesSection: FC = () => (
 const AboutSection: FC = () => (
   <section id="about" className="py-20">
     <div className="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
-      <div className="md:w-1/2">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={zoomIn}
+        transition={{ duration: 0.8 }}
+        className="md:w-1/2"
+      >
         <Image
           src="/images/im1.jpg"
           alt="درباره سالن زیبای درون"
@@ -225,8 +279,15 @@ const AboutSection: FC = () => (
           height={400}
           className="rounded-2xl shadow-2xl w-full h-auto"
         />
-      </div>
-      <div className="md:w-1/2 text-center md:text-right">
+      </motion.div>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUp}
+        transition={{ duration: 0.8 }}
+        className="md:w-1/2 text-center md:text-right"
+      >
         <h2 className="text-3xl md:text-4xl font-bold text-dark-text">
           داستان ما
         </h2>
@@ -241,7 +302,7 @@ const AboutSection: FC = () => (
           ما به کیفیت کار خود ایمان داریم و معتقدیم که زیبایی واقعی از درون
           سرچشمه می‌گیرد و وظیفه ما تنها نمایان کردن آن است.
         </p>
-      </div>
+      </motion.div>
     </div>
   </section>
 );
@@ -253,13 +314,17 @@ const GallerySection: FC = () => (
         title="نمونه کارهای ما"
         subtitle="نگاهی به هنر دستان متخصصان ما بیندازید."
       />
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <motion.div
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="grid grid-cols-2 md:grid-cols-4 gap-4"
+      >
         {galleryImages.map((image, index) => (
-          <div
+          <div 
             key={index}
-            className="overflow-hidden rounded-2xl shadow-lg group"
-          >
-            {/* Replaced <img> with <Image> component */}
+            className="overflow-hidden rounded-2xl shadow-lg group">
             <Image
               src={image.src}
               alt={image.alt}
@@ -269,7 +334,7 @@ const GallerySection: FC = () => (
             />
           </div>
         ))}
-      </div>
+      </motion.div>
     </div>
   </section>
 );
@@ -277,7 +342,8 @@ const GallerySection: FC = () => (
 const Footer: FC = () => (
   <footer id="contact" className="bg-dark-text text-white pt-16 pb-8">
     <div className="container mx-auto px-6">
-      <div className="grid md:grid-cols-3 gap-12 text-center md:text-right">
+      <div className="grid md:grid-cols-3 gap-12 text-center md:text-right"
+      >
         <div>
           <h3 className="text-xl font-bold mb-4 border-b-2 border-gold inline-block pb-2">
             سالن زیبای درون
@@ -352,7 +418,7 @@ const Footer: FC = () => (
   </footer>
 );
 
-// --- MAIN PAGE COMPONENT ---
+// --- MAIN PAGE ---
 export default function Home() {
   return (
     <div className="bg-cream-100">
