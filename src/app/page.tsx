@@ -7,7 +7,7 @@ import { FiMenu, FiX, FiMapPin, FiPhone, FiMail } from "react-icons/fi";
 import { FaInstagram, FaTelegram, FaWhatsapp } from "react-icons/fa";
 import { GiHairStrands, GiSpikedDragonHead, GiLotus } from "react-icons/gi";
 import { TbBrandDaysCounter } from "react-icons/tb";
-import { fadeInUp, fadeIn, zoomIn, staggerContainer } from "../components/animations";
+import { fadeInUp, fadeIn, zoomIn, staggerContainer, itemVariants } from "../components/animations";
 
 // --- TYPE DEFINITIONS ---
 type NavLink = {
@@ -16,6 +16,7 @@ type NavLink = {
 };
 
 type Service = {
+  id: number;
   icon: ReactNode;
   title: string;
   description: string;
@@ -37,21 +38,25 @@ const navLinks: NavLink[] = [
 
 const services: Service[] = [
   {
+    id: 1,
     icon: <GiHairStrands size={30} />,
     title: "خدمات مو",
     description: "انواع کوتاهی، رنگ و لایت، کراتین و احیای مو با بهترین مواد.",
   },
   {
+    id: 2,
     icon: <TbBrandDaysCounter size={30} />,
     title: "خدمات ناخن",
     description: "مانیکور، پدیکور، کاشت و طراحی ناخن با جدیدترین مدل‌ها.",
   },
   {
+    id: 3,
     icon: <GiSpikedDragonHead size={30} />,
     title: "میکاپ و گریم",
     description: "میکاپ حرفه‌ای عروس و همراه، گریم سینمایی و کانتورینگ.",
   },
   {
+    id: 4,
     icon: <GiLotus size={30} />,
     title: "خدمات پوست",
     description: "فیشیال تخصصی، پاکسازی عمیق و آبرسانی پوست صورت.",
@@ -238,23 +243,31 @@ const ServicesSection: FC = () => (
         viewport={{ once: true }}
         className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
       >
-        {services.map((service, index) => (
-          <div
-            key={index}
+        {services.map((service) => (
+          <motion.div
+            key={service.id}
+            variants={itemVariants}
+            whileHover={{ y: -8 }}
+            /*
+            transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+
+            استفاده از duration-300 ease-out-expo که معادل CSS کد بالا که از ویژگی Framer Motion است.
+            */
             className="bg-white/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg 
-                        text-center group transition-all duration-300 ease-out-expo 
-                        hover:shadow-2xl hover:-translate-y-2"
-          >
-            <div className="flex justify-center mb-4">
-              <div className="bg-gold/20 text-gold p-4 rounded-full 
-                              transition-colors duration-300 
-                              group-hover:bg-gold group-hover:text-white">
+                        text-center group duration-300 ease-out-expo">
+            <div 
+              className="flex justify-center mb-4"
+            >
+              <div 
+                className="bg-gold/20 text-gold p-4 rounded-full 
+                            transition-colors duration-300 
+                            group-hover:bg-gold group-hover:text-white">
                 {service.icon}
               </div>
             </div>
             <h3 className="text-xl font-bold mb-2 text-dark-text">{service.title}</h3>
             <p className="text-gray-600">{service.description}</p>
-          </div>
+          </motion.div>
         ))}
       </motion.div>
     </div>
@@ -269,7 +282,7 @@ const AboutSection: FC = () => (
         whileInView="visible"
         viewport={{ once: true }}
         variants={zoomIn}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 2.5 }}
         className="md:w-1/2"
       >
         <Image
@@ -285,7 +298,7 @@ const AboutSection: FC = () => (
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeInUp}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 2.5 }}
         className="md:w-1/2 text-center md:text-right"
       >
         <h2 className="text-3xl md:text-4xl font-bold text-dark-text">
@@ -319,20 +332,20 @@ const GallerySection: FC = () => (
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="grid grid-cols-2 md:grid-cols-4 gap-4"
-      >
+        className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {galleryImages.map((image, index) => (
-          <div 
+          <motion.div 
             key={index}
+            variants={itemVariants}
             className="overflow-hidden rounded-2xl shadow-lg group">
-            <Image
-              src={image.src}
-              alt={image.alt}
-              width={400}
-              height={600}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out-expo"
-            />
-          </div>
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={400}
+                height={600}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out-expo"
+              />
+          </motion.div>
         ))}
       </motion.div>
     </div>
