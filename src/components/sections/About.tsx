@@ -32,12 +32,12 @@ const AboutSection: FC = () => (
         transition={{ duration: 2.5 }}
         className="md:w-1/2 text-center md:text-right"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-dark-text">
+        <h2 className="text-3xl md:text-4xl font-bold text-brand-green">
           داستان ما
         </h2>
-        <div className="inline-block w-24 h-1 bg-gold mt-4 mb-6 rounded-full ml-auto md:mr-0"></div>
+        <div className="inline-block w-24 h-1 bg-accent-pink mt-4 mb-6 rounded-full ml-auto md:mr-0"></div>
         <p className="text-gray-600 leading-relaxed mb-4">
-          سالن زیبایی درن با بیش از یک دهه تجربه، همواره در تلاش بوده تا با
+          سالن زیبایی درون با بیش از یک دهه تجربه، همواره در تلاش بوده تا با
           استفاده از بهترین متخصصان و به‌روزترین تکنیک‌های دنیا، محیطی لوکس و
           آرام را برای شما عزیزان فراهم آورد. هدف ما، خلق تجربه‌ای منحصر به فرد
           از زیبایی و آرامش برای هر یک از مشتریانمان است.

@@ -19,7 +19,7 @@ const galleryImages: GalleryImage[] = [
 ];
 
 const GallerySection: FC = () => (
-  <section id="gallery" className="py-20 bg-cream-200">
+  <section id="gallery" className="py-20 bg-background-section">
     <div className="container mx-auto px-6">
       <SectionTitle
         title="نمونه کارهای ما"

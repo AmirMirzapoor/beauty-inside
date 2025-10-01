@@ -7,23 +7,25 @@ const config = {
   ],
   theme: {
     extend: {
-      // Custom color palette for the salon theme
-      colors: {
-        "brand-primary": "#A0522D", // Sienna
-        "brand-secondary": "#D2B48C", // Tan
-        cream: {
-          100: "#FFF8F0",
-          200: "#FDF5E6",
-        },
-        gold: "#D1B59A",
-        "dark-text": "#36241C",
-      },
-      // Define font families for easy use with Tailwind utilities
       fontFamily: {
-        sans: ["Vazirmatn", "sans-serif"],
-        inter: ["var(--font-inter)", "sans-serif"],
+        vazir: ['var(--font-vazir)'],
       },
-      // Custom transition for smooth animations
+      colors: {
+        // تعریف سیستم رنگی جدید
+        'brand-green': {
+          DEFAULT: '#0A4D50', // سبز اصلی برند
+          dark: '#031E20',    // برای متن‌ها و فوتر
+        },
+        'accent-pink': {
+          DEFAULT: '#E9A8A9', // صورتی اصلی برای دکمه‌ها و هایلایت‌ها
+          light: '#F5C7C8', // صورتی روشن‌تر
+        },
+        'background': {
+          light: '#F0F7F4',   // پس‌زمینه اصلی سایت (بسیار روشن با ته‌رنگ سبز)
+          section: '#E6EFEC', // پس‌زمینه بخش‌های مجزا
+        },
+        'accent-yellow': '#F3D582', // زرد ملایم برای جزئیات خاص (در صورت نیاز)
+      },
       transitionTimingFunction: {
         "out-expo": "cubic-bezier(0.19, 1, 0.22, 1)",
       },

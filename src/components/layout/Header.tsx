@@ -41,7 +41,7 @@ const Header: FC = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-2xl font-bold text-dark-text"
+          className="text-2xl font-bold text-brand-green"
         >
           سالن زیبای درون
         </motion.a>
@@ -53,7 +53,7 @@ const Header: FC = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="text-gray-700 hover:text-gold transition-colors duration-300"
+              className="text-gray-700 hover:text-accent-pink transition-colors duration-300"
             >
               {link.label}
             </motion.a>
@@ -61,14 +61,14 @@ const Header: FC = () => {
         </div>
         <a
           href="#contact"
-          className="hidden md:block bg-gold text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition-shadow shadow-md hover:shadow-lg"
+          className="hidden md:block bg-accent-pink text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition-shadow shadow-md hover:shadow-lg"
         >
           رزرو نوبت
         </a>
         <div className="md:hidden">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-dark-text focus:outline-none"
+            className="text-brand-green focus:outline-none"
             aria-label="Toggle Menu"
           >
             {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
@@ -96,7 +96,7 @@ const Header: FC = () => {
             <a
               href="#contact"
               onClick={() => setIsMenuOpen(false)}
-              className="inline-block bg-gold text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition-shadow"
+              className="inline-block bg-accent-pink text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition-shadow"
             >
               رزرو نوبت
             </a>

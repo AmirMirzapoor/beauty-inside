@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="bg-cream-100">
+      <main className="bg-background-light">
         <Hero />
         <About />
         <Services />

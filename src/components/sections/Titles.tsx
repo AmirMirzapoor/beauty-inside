@@ -16,9 +16,9 @@ const SectionTitle: FC<{ title: string; subtitle: string }> = ({
     transition={{ duration: 0.8 }}
     className="text-center mb-12"
   >
-      <h2 className="text-3xl md:text-4xl font-bold text-dark-text">{title}</h2>
+      <h2 className="text-3xl md:text-4xl font-bold text-brand-green">{title}</h2>
       <p className="text-gray-600 mt-2">{subtitle}</p>
-      <div className="inline-block w-24 h-1 bg-gold mt-4 rounded-full"></div>
+      <div className="inline-block w-24 h-1 bg-accent-pink mt-4 rounded-full"></div>
   </motion.div>
 );
 

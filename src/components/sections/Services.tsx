@@ -22,7 +22,7 @@ const services: Service[] = [
 ];
 
 const ServicesSection: FC = () => (
-  <section id="services" className="py-20 bg-cream-200">
+  <section id="services" className="py-20 bg-background-section">
     <div className="container mx-auto px-6">
       <SectionTitle
         title="خدمات تخصصی ما"
@@ -51,13 +51,13 @@ const ServicesSection: FC = () => (
               className="flex justify-center mb-4"
             >
               <div 
-                className="bg-gold/20 text-gold p-4 rounded-full 
+                className="bg-accent-pink/20 text-accent-pink p-4 rounded-full 
                             transition-colors duration-300 
-                            group-hover:bg-gold group-hover:text-white">
+                            group-hover:bg-accent-pink group-hover:text-white">
                 {service.icon}
               </div>
             </div>
-            <h3 className="text-xl font-bold mb-2 text-dark-text">{service.title}</h3>
+            <h3 className="text-xl font-bold mb-2 text-brand-green">{service.title}</h3>
             <p className="text-gray-600">{service.description}</p>
           </motion.div>
         ))}

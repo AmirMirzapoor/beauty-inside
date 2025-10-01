@@ -37,7 +37,7 @@ const HeroSection: FC = () => (
         </motion.p>
         <a
           href="#services"
-          className="mt-8 inline-block bg-gold text-white px-10 py-3 rounded-full text-lg font-semibold
+          className="mt-8 inline-block bg-accent-pink text-white px-10 py-3 rounded-full text-lg font-semibold
           transition-all duration-300 shadow-xl 
           hover:bg-opacity-90 hover:shadow-2xl hover:-translate-y-1"
         >
