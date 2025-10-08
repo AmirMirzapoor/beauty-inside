@@ -21,7 +21,7 @@ const config = {
           light: '#F5C7C8', // صورتی روشن‌تر
         },
         'background': {
-          light: '#F0F7F4',   // پس‌زمینه اصلی سایت (بسیار روشن با ته‌رنگ سبز)
+          light: '#C6E8DD',   // پس‌زمینه اصلی سایت (بسیار روشن با ته‌رنگ سبز)
           section: '#E6EFEC', // پس‌زمینه بخش‌های مجزا
         },
         'accent-yellow': '#F3D582', // زرد ملایم برای جزئیات خاص (در صورت نیاز)
@@ -29,9 +29,21 @@ const config = {
       transitionTimingFunction: {
         "out-expo": "cubic-bezier(0.19, 1, 0.22, 1)",
       },
+      textStroke: {
+        gold: '1px gold',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        '.text-stroke-gold': {
+          '-webkit-text-stroke': '1px gold',
+          'text-stroke': '1px gold',
+        },
+      });
+    },
+  ],
 };
 
 export default config;

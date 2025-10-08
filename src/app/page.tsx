@@ -11,9 +11,9 @@ export default function Home() {
       <Header />
       <main className="bg-background-light">
         <Hero />
-        <About />
         <Services />
         <Gallery />
+        <About />
       </main>
       <Footer />
     </>

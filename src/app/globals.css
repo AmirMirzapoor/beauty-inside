@@ -28,11 +28,11 @@ body {
   background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c9a97e; /* gold color */
+  background: #F5569B; /* gold color */
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #b8996e; /* slightly darker gold */
+  background: #F5569B; /* slightly darker gold */
 }
 
 /* Added for smooth transitions in layouts */

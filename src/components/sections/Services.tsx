@@ -22,7 +22,7 @@ const services: Service[] = [
 ];
 
 const ServicesSection: FC = () => (
-  <section id="services" className="py-20 bg-background-section">
+  <section id="services" className="py-20 bg-green-300">
     <div className="container mx-auto px-6">
       <SectionTitle
         title="خدمات تخصصی ما"
@@ -45,19 +45,19 @@ const ServicesSection: FC = () => (
 
             استفاده از duration-300 ease-out-expo که معادل CSS کد بالا که از ویژگی Framer Motion است.
             */
-            className="bg-white/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg 
+            className="bg-red-300 p-8 rounded-2xl shadow-xl 
                         text-center group duration-300 ease-out-expo">
             <div 
               className="flex justify-center mb-4"
             >
               <div 
-                className="bg-accent-pink/20 text-accent-pink p-4 rounded-full 
+                className="bg-white text-brand-green p-4 rounded-full 
                             transition-colors duration-300 
-                            group-hover:bg-accent-pink group-hover:text-white">
+                            group-hover:bg-green-300 group-hover:text-white">
                 {service.icon}
               </div>
             </div>
-            <h3 className="text-xl font-bold mb-2 text-brand-green">{service.title}</h3>
+            <h3 className="text-xl font-bold mb-2 text-brand-green-dark">{service.title}</h3>
             <p className="text-gray-600">{service.description}</p>
           </motion.div>
         ))}

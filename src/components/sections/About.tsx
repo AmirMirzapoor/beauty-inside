@@ -6,7 +6,7 @@ import { fadeInUp, zoomIn } from "@/components/animations";
 import type { FC } from "react";
 
 const AboutSection: FC = () => (
-  <section id="about" className="py-20">
+  <section id="about" className="py-20 bg-green-300">
     <div className="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
       <motion.div
         initial="hidden"
