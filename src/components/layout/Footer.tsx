@@ -1,26 +1,6 @@
 import type { FC } from "react";
 import { FiMapPin, FiPhone, FiMail } from "react-icons/fi";
-import { FaInstagram, FaTelegram, FaWhatsapp } from "react-icons/fa";
-
-type NavLink = {
-  href: string;
-  label: string;
-};
-
-// --- DATA ---
-const navLinks: NavLink[] = [
-  { href: "#home", label: "صفحه اصلی" },
-  { href: "#services", label: "خدمات ما" },
-  { href: "#about", label: "درباره ما" },
-  { href: "#gallery", label: "گالری" },
-  { href: "#contact", label: "تماس با ما" },
-];
-
-const socialLinks = [
-  { href: "#", icon: <FaInstagram size={24} />, label: "Instagram" },
-  { href: "#", icon: <FaTelegram size={24} />, label: "Telegram" },
-  { href: "#", icon: <FaWhatsapp size={24} />, label: "Whatsapp" },
-];
+import { navLinks, socialLinks } from "@/lib/data";
 
 const Footer: FC = () => (
   <footer id="contact" className="bg-accent-pink text-white pt-16 pb-8">

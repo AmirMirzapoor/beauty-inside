@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { fadeInUp } from "@/components/animations";
+import { fadeInUp } from "@/components/common/animations";
 import type { FC } from "react";
 
 const HeroSection: FC = () => (

@@ -3,19 +3,7 @@
 import { useState, useEffect, type FC } from "react";
 import { motion } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
-
-type NavLink = {
-  href: string;
-  label: string;
-};
-
-const navLinks: NavLink[] = [
-  { href: "#home", label: "صفحه اصلی" },
-  { href: "#services", label: "خدمات ما" },
-  { href: "#about", label: "درباره ما" },
-  { href: "#gallery", label: "گالری" },
-  { href: "#contact", label: "تماس با ما" },
-];
+import { navLinks } from "@/lib/data";
 
 const Header: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -53,7 +41,7 @@ const Header: FC = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="text-gray-700 hover:text-accent-pink-light transition-colors duration-300 text-lg font"
+              className="text-white hover:text-accent-pink-light transition-colors duration-300 text-lg font"
             >
               {link.label}
             </motion.a>

@@ -2,21 +2,10 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { staggerContainer, itemVariants } from "@/components/animations";
-import SectionTitle from "./Titles";
+import { staggerContainer, itemVariants } from "@/components/common/animations";
+import SectionTitle from "@/components/common/Titles";
+import { galleryImages } from "@/lib/data";
 import type { FC } from "react";
-
-type GalleryImage = {
-  src: string;
-  alt: string;
-};
-
-const galleryImages: GalleryImage[] = [
-  { src: "/images/portfolio/im8.jpg", alt: "مدل مو ۱" },
-  { src: "/images/portfolio/im3.jpg", alt: "طراحی ناخن" },
-  { src: "/images/portfolio/im4.jpg", alt: "میکاپ حرفه‌ای" },
-  { src: "/images/portfolio/im5.jpg", alt: "مدل مو ۲" },
-];
 
 const GallerySection: FC = () => (
   <section id="gallery" className="py-20 bg-green-300">

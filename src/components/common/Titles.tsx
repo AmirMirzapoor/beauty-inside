@@ -2,7 +2,7 @@
 
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import { fadeInUp } from "@/components/animations";
+import { fadeInUp } from "./animations";
 
 const SectionTitle: FC<{ title: string; subtitle: string }> = ({
   title,

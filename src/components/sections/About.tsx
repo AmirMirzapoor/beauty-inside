@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { fadeInUp, zoomIn } from "@/components/animations";
+import { fadeInUp, zoomIn } from "@/components/common/animations";
 import type { FC } from "react";
 
 const AboutSection: FC = () => (
