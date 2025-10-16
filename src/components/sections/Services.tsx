@@ -5,7 +5,7 @@ import { staggerContainer, itemVariants } from "@/components/common/animations";
 import SectionTitle from "@/components/common/Titles";
 import { services } from "@/lib/data";
 import type { FC } from "react";
-import Link from 'next/link';
+import Link from "next/link";
 
 const ServicesSection: FC = () => (
   <section id="services" className="py-20 bg-green-300">
@@ -33,18 +33,20 @@ const ServicesSection: FC = () => (
               استفاده از duration-300 ease-out-expo که معادل CSS کد بالا که از ویژگی Framer Motion است.
               */
               className="bg-red-300 p-8 rounded-2xl shadow-xl 
-                          text-center group duration-300 ease-out-expo">
-              <div 
-                className="flex justify-center mb-4"
-              >
-                <div 
+                          text-center group duration-300 ease-out-expo"
+            >
+              <div className="flex justify-center mb-4">
+                <div
                   className="bg-white text-brand-green p-4 rounded-full 
                               transition-colors duration-300 
-                              group-hover:bg-green-300 group-hover:text-white">
+                              group-hover:bg-green-300 group-hover:text-white"
+                >
                   {service.icon}
                 </div>
               </div>
-              <h3 className="text-xl font-bold mb-2 text-brand-green-dark">{service.title}</h3>
+              <h3 className="text-xl font-bold mb-2 text-brand-green-dark">
+                {service.title}
+              </h3>
               <p className="text-gray-600">{service.description}</p>
             </motion.div>
           </Link>

@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import MotionWrapper from '@/components/common/MotionWrapper';
-import { staggerContainer, itemVariants } from '@/components/common/animations';
-import type { PortfolioItem, Artist, Service } from '@/components/common/types';
+import Image from "next/image";
+import Link from "next/link";
+import MotionWrapper from "@/components/common/MotionWrapper";
+import { staggerContainer, itemVariants } from "@/components/common/animations";
+import type { PortfolioItem, Artist, Service } from "@/components/common/types";
 
 interface EnrichedPortfolioItem extends PortfolioItem {
   artist?: Artist;
@@ -15,7 +15,10 @@ interface Props {
   portfolioItems: EnrichedPortfolioItem[];
 }
 
-export default function ServicePortfolioGrid({ service, portfolioItems }: Props) {
+export default function ServicePortfolioGrid({
+  service,
+  portfolioItems,
+}: Props) {
   if (portfolioItems.length === 0) {
     return (
       <p className="text-center text-lg text-gray-500">
@@ -69,7 +72,9 @@ export default function ServicePortfolioGrid({ service, portfolioItems }: Props)
                   <p className="font-semibold text-brand-green-dark transition-colors group-hover/artist:text-accent-pink">
                     {item.artist.name}
                   </p>
-                  <p className="text-sm text-gray-500">{item.artist.specialty}</p>
+                  <p className="text-sm text-gray-500">
+                    {item.artist.specialty}
+                  </p>
                 </div>
               </Link>
             </div>

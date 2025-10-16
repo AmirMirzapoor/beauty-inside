@@ -18,9 +18,7 @@ const Header: FC = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-brand-green backdrop-blur-lg shadow-md"
-          : "bg-red-300"
+        isScrolled ? "bg-brand-green backdrop-blur-lg shadow-md" : "bg-red-300"
       }`}
     >
       <nav className="container mx-auto px-9 py-4 flex justify-between items-center">

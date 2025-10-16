@@ -6,7 +6,10 @@ import { fadeInUp } from "@/components/common/animations";
 import type { FC } from "react";
 
 const HeroSection: FC = () => (
-  <section id="home" className="relative h-screen flex items-center justify-center bg-green-300 mt-9">
+  <section
+    id="home"
+    className="relative h-screen flex items-center justify-center bg-green-300 mt-9"
+  >
     <div className="relative w-[90%] h-[85%] mx-auto rounded-xl overflow-hidden flex items-center justify-center md:justify-start px-4 sm:px-6">
       <Image
         src="/images/hero.jpeg"
@@ -15,7 +18,8 @@ const HeroSection: FC = () => (
         priority
         className="object-cover"
       />
-      <motion.div className="bg-black/20 backdrop-blur-sm p-6 sm:p-10 rounded-2xl text-center md:text-right"
+      <motion.div
+        className="bg-black/20 backdrop-blur-sm p-6 sm:p-10 rounded-2xl text-center md:text-right"
         initial="hidden"
         animate="visible"
         variants={fadeInUp}

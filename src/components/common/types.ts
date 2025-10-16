@@ -1,43 +1,47 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
-// انواع داده موجود
-export type NavLink = {
+// لینک‌های ناوبری (navbar)
+export interface NavLink {
   href: string;
   label: string;
-};
+}
 
-export type Service = {
+// خدمات (Services)
+export interface Service {
   id: number;
-  slug: string; // کلید برای استفاده در URL
+  slug: string;
   icon: ReactNode;
   title: string;
   description: string;
-};
+}
 
-export type GalleryImage = {
+// تصاویر گالری
+export interface GalleryImage {
   src: string;
   alt: string;
-};
+}
 
-export type SocialLink = {
-    href: string;
-    icon: ReactNode;
-    label: string;
-};
+// شبکه‌های اجتماعی
+export interface SocialLink {
+  href: string;
+  icon: ReactNode;
+  label: string;
+}
 
-// --- انواع داده جدید ---
-export type Artist = {
-    id: number;
-    name: string;
-    profilePic: string; // مسیر عکس پروفایل
-    specialty: string;  // تخصص اصلی
-    bio: string;
-    rating: number; // میانگین امتیاز از ۵
-};
+// هنرمندان (Artists)
+export interface Artist {
+  id: number;
+  name: string;
+  profilePic: string; // مسیر عکس پروفایل
+  specialty: string; // تخصص
+  bio: string;
+  rating: number; // میانگین امتیاز از ۵
+}
 
-export type PortfolioItem = {
-    id: number;
-    image: string; // مسیر عکس نمونه کار
-    serviceSlug: string; // به کدام خدمت مرتبط است
-    artistId: number;   // کدام هنرمند این کار را انجام داده
-};
+// نمونه‌کارها (Portfolio)
+export interface PortfolioItem {
+  id: number;
+  image: string; // مسیر عکس نمونه کار
+  serviceSlug: string; // به کدام خدمت مرتبط است
+  artistId: number; // شناسه هنرمند
+}

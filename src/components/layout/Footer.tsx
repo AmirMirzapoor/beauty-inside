@@ -5,8 +5,7 @@ import { navLinks, socialLinks } from "@/lib/data";
 const Footer: FC = () => (
   <footer id="contact" className="bg-accent-pink text-white pt-16 pb-8">
     <div className="container mx-auto px-6">
-      <div className="grid md:grid-cols-3 gap-12 text-center md:text-right"
-      >
+      <div className="grid md:grid-cols-3 gap-12 text-center md:text-right">
         <div>
           <h3 className="text-xl font-bold text-emerald-600 mb-4 border-b-2 border-brand-green inline-block pb-2">
             سالن زیبای درون

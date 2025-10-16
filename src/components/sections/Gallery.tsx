@@ -19,19 +19,21 @@ const GallerySection: FC = () => (
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        className="grid grid-cols-2 md:grid-cols-4 gap-4"
+      >
         {galleryImages.map((image, index) => (
-          <motion.div 
+          <motion.div
             key={index}
             variants={itemVariants}
-            className="overflow-hidden rounded-2xl shadow-lg group">
-              <Image
-                src={image.src}
-                alt={image.alt}
-                width={400}
-                height={600}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out-expo"
-              />
+            className="overflow-hidden rounded-2xl shadow-lg group"
+          >
+            <Image
+              src={image.src}
+              alt={image.alt}
+              width={400}
+              height={600}
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out-expo"
+            />
           </motion.div>
         ))}
       </motion.div>

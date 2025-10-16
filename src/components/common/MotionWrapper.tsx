@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { motion, type MotionProps, type HTMLMotionProps } from 'framer-motion';
-import type { ElementType, ReactNode, CSSProperties } from 'react';
+import { motion, type MotionProps, type HTMLMotionProps } from "framer-motion";
+import type { ElementType, ReactNode, CSSProperties } from "react";
 
 interface MotionWrapperProps extends MotionProps {
   children: ReactNode;
@@ -12,7 +12,7 @@ interface MotionWrapperProps extends MotionProps {
 
 const MotionWrapper = ({
   children,
-  tag = 'div',
+  tag = "div",
   className,
   style,
   ...props
@@ -25,7 +25,7 @@ const MotionWrapper = ({
     <MotionComponent
       className={className}
       style={style}
-      {...(props as HTMLMotionProps<'div'>)}
+      {...(props as HTMLMotionProps<"div">)}
     >
       {children}
     </MotionComponent>
