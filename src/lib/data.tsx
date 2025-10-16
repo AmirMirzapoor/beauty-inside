@@ -37,8 +37,8 @@ export const socialLinks: SocialLink[] = [
 
 // --- ARTISTS DATA ---
 export const artists: Artist[] = [
-    { id: 1, name: "سارا اکبری", profilePic: "/images/artists/artist1.jpg", specialty: "متخصص رنگ و لایت", bio: "با بیش از ۱۰ سال تجربه در زمینه جدیدترین تکنیک‌های رنگ مو، آماده ارائه بهترین خدمات به شما هستم.", rating: 4.9 },
-    { id: 2, name: "مریم رضایی", profilePic: "/images/artists/artist2.jpg", specialty: "ناخن‌کار حرفه‌ای", bio: "متخصص در انواع کاشت ناخن و طراحی‌های مدرن و مینیمال.", rating: 4.8 },
+    { id: 1, name: "سارا اکبری", profilePic: "/images/artists/artist1.png", specialty: "متخصص رنگ و لایت", bio: "با بیش از ۱۰ سال تجربه در زمینه جدیدترین تکنیک‌های رنگ مو، آماده ارائه بهترین خدمات به شما هستم.", rating: 4.9 },
+    { id: 2, name: "مریم رضایی", profilePic: "/images/artists/artist2.png", specialty: "ناخن‌کار حرفه‌ای", bio: "متخصص در انواع کاشت ناخن و طراحی‌های مدرن و مینیمال.", rating: 4.8 },
     { id: 3, name: "الهام قاسمی", profilePic: "/images/artists/artist3.jpg", specialty: "میکاپ آرتیست", bio: "میکاپ تخصصی عروس و گریم سینمایی با استفاده از بهترین برندهای روز دنیا.", rating: 5.0 },
 ];
 
