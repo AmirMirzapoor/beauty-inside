@@ -1,12 +1,11 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import type { MotionProps } from 'framer-motion';
-import type { CSSProperties, ElementType, ReactNode } from 'react';
+import { motion, type MotionProps, type HTMLMotionProps } from 'framer-motion';
+import type { ElementType, ReactNode, CSSProperties } from 'react';
 
 interface MotionWrapperProps extends MotionProps {
   children: ReactNode;
-  tag?: ElementType;
+  tag?: keyof typeof motion; // نوع تگ (مثل 'div', 'section', 'article')
   className?: string;
   style?: CSSProperties;
 }
@@ -18,18 +17,16 @@ const MotionWrapper = ({
   style,
   ...props
 }: MotionWrapperProps) => {
-  const MotionComponent = motion[tag as keyof typeof motion] as typeof motion.div;
-
-  if (!MotionComponent) {
-    return (
-      <div className={className} style={style}>
-        {children}
-      </div>
-    );
-  }
+  // تبدیل ایمن motion object به رکورد تگ‌ها
+  const MotionComponents = motion as unknown as Record<string, ElementType>;
+  const MotionComponent = MotionComponents[tag] ?? motion.div;
 
   return (
-    <MotionComponent className={className} style={style} {...props}>
+    <MotionComponent
+      className={className}
+      style={style}
+      {...(props as HTMLMotionProps<'div'>)}
+    >
       {children}
     </MotionComponent>
   );

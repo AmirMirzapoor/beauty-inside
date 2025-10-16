@@ -1,25 +1,19 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-
+import { getServiceBySlug, getPortfolioItemsByService, getArtistById } from '@/lib/data';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import {
-  getServiceBySlug,
-  getPortfolioItemsByService,
-  getArtistById,
-} from '@/lib/data';
 import MotionWrapper from '@/components/common/MotionWrapper';
 import { staggerContainer, itemVariants } from '@/components/common/animations';
 
-interface ServiceDetailPageProps {
-  params: Promise<{ slug: string }>;
-}
-
 export default async function ServiceDetailPage({
   params,
-}: ServiceDetailPageProps) {
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
+
   const service = getServiceBySlug(slug);
   const portfolioItems = getPortfolioItemsByService(slug);
 
@@ -30,41 +24,24 @@ export default async function ServiceDetailPage({
   return (
     <div className="bg-background-light">
       <Header />
-      <main className="pt-24 min-h-screen">
-        {/* Hero Banner for the Service */}
+      <main className="min-h-screen pt-24">
         <section className="bg-background-section py-16 text-center">
           <div className="container mx-auto px-6">
-            <MotionWrapper
-              variants={itemVariants}
-              className="inline-block p-4 rounded-full bg-accent-pink/20 text-accent-pink mb-4"
-            >
+            <MotionWrapper variants={itemVariants} className="mb-4 inline-block rounded-full bg-accent-pink/20 p-4 text-accent-pink">
               {service.icon}
             </MotionWrapper>
-            <MotionWrapper
-              variants={itemVariants}
-              transition={{ delay: 0.2 }}
-            >
-              <h1 className="text-4xl md:text-5xl font-bold text-brand-green-dark">
-                {service.title}
-              </h1>
+            <MotionWrapper variants={itemVariants} transition={{ delay: 0.2 }}>
+              <h1 className="text-4xl font-bold text-brand-green-dark md:text-5xl">{service.title}</h1>
             </MotionWrapper>
-            <MotionWrapper
-              variants={itemVariants}
-              transition={{ delay: 0.4 }}
-            >
-              <p className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
-                {service.description}
-              </p>
+            <MotionWrapper variants={itemVariants} transition={{ delay: 0.4 }}>
+              <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">{service.description}</p>
             </MotionWrapper>
           </div>
         </section>
 
-        {/* Portfolio Gallery */}
         <section className="py-20">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold text-center mb-12 text-brand-green-dark">
-              نمونه‌کارها
-            </h2>
+            <h2 className="mb-12 text-center text-3xl font-bold text-brand-green-dark">نمونه‌کارها</h2>
 
             {portfolioItems.length > 0 ? (
               <MotionWrapper
@@ -73,46 +50,43 @@ export default async function ServiceDetailPage({
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }}
-                className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+                className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
               >
                 {portfolioItems.map((item) => {
                   const artist = getArtistById(item.artistId);
                   return (
                     <MotionWrapper
-                      tag="div"
                       key={item.id}
+                      tag="div"
                       variants={itemVariants}
-                      className="bg-white rounded-2xl shadow-lg overflow-hidden group"
+                      className="overflow-hidden rounded-2xl bg-white shadow-lg group"
                     >
-                      <div className="relative w-full h-80">
+                      <div className="relative h-80 w-full">
                         <Image
                           src={item.image}
                           alt={`نمونه کار ${service.title}`}
                           fill
-                          className="object-cover group-hover:scale-110 transition-transform duration-500"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                       </div>
-                      <div className="p-6 bg-white">
+                      <div className="bg-white p-6">
                         {artist && (
-                          <Link
-                            href={`/artists/${artist.id}`}
-                            className="flex items-center space-x-3 space-x-reverse group/artist"
-                          >
-                            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-accent-pink/50">
+                          <Link href={`/artists/${artist.id}`} className="group/artist flex items-center gap-3">
+                            <div className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-accent-pink/50">
                               <Image
                                 src={artist.profilePic}
                                 alt={artist.name}
                                 fill
+                                sizes="48px"
                                 className="object-cover"
                               />
                             </div>
                             <div>
-                              <p className="font-semibold text-brand-green-dark group-hover/artist:text-accent-pink transition-colors">
+                              <p className="font-semibold text-brand-green-dark transition-colors group-hover/artist:text-accent-pink">
                                 {artist.name}
                               </p>
-                              <p className="text-sm text-gray-500">
-                                {artist.specialty}
-                              </p>
+                              <p className="text-sm text-gray-500">{artist.specialty}</p>
                             </div>
                           </Link>
                         )}
@@ -122,9 +96,7 @@ export default async function ServiceDetailPage({
                 })}
               </MotionWrapper>
             ) : (
-              <p className="text-center text-gray-500 text-lg">
-                در حال حاضر نمونه‌کاری برای این خدمت ثبت نشده است.
-              </p>
+              <p className="text-center text-lg text-gray-500">در حال حاضر نمونه‌کاری برای این خدمت ثبت نشده است.</p>
             )}
           </div>
         </section>
