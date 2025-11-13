@@ -1,36 +1,106 @@
+import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
+import { getArtistBySlug, getEnrichedPortfolioItemsByArtist, getAllArtistSlugs } from '@/lib/data';
+import ArtistInfoCard from '@/components/sections/ArtistInfoCard';
+import ArtistPortfolioGrid from '@/components/sections/ArtistPortfolioGrid';
+import ArtistProfileSkeleton from '@/components/skeletons/ArtistProfileSkeleton';
+import { Suspense } from 'react';
 
-interface ArtistProfilePageProps {
-  params: Promise<{ id: string }>;
+/* -------------------------------------------------------------------------- */
+/*                          STATIC PATHS (ISR)                                */
+/* -------------------------------------------------------------------------- */
+export async function generateStaticParams() {
+  const slugs = getAllArtistSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: ArtistProfilePageProps): Promise<Metadata> {
-  const { id } = await params;
+/* -------------------------------------------------------------------------- */
+/*                              TYPES & PROPS                                 */
+/* -------------------------------------------------------------------------- */
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+/* -------------------------------------------------------------------------- */
+/*                             METADATA (SEO)                                 */
+/* -------------------------------------------------------------------------- */
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const artist = await getArtistBySlug(slug);
+
+  if (!artist) {
+    return {
+      title: 'هنرمند یافت نشد | سالن زیبای درون',
+      description: 'صفحهٔ مورد نظر وجود ندارد.',
+    };
+  }
 
   return {
-    title: `پروفایل هنرمند ${id}`,
-    description: `صفحه پروفایل هنرمند با شناسه ${id}`,
+    title: `${artist.name} | ${artist.specialty}`,
+    description: `${artist.bio.substring(0, 160)}...`,
+    openGraph: {
+      title: `${artist.name} | ${artist.specialty}`,
+      description: artist.bio,
+      images: [
+        {
+          url: artist.profilePic,
+          width: 500,
+          height: 500,
+          alt: `تصویر پروفایل ${artist.name}`,
+        },
+      ],
+      type: 'profile',
+      locale: 'fa_IR',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${artist.name} | ${artist.specialty}`,
+      description: artist.bio,
+      images: [artist.profilePic],
+    },
+    alternates: {
+      canonical: `/artists/${slug}`,
+    },
   };
 }
 
-export default async function ArtistProfilePage({ params }: ArtistProfilePageProps) {
-  const { id } = await params;
+/* -------------------------------------------------------------------------- */
+/*                        MAIN PAGE COMPONENT                                 */
+/* -------------------------------------------------------------------------- */
+export default async function ArtistProfilePage({ params }: Props) {
+  const { slug } = await params;
+
+  // ✅ Fetch data in parallel
+  const [artist, portfolioItems] = await Promise.all([
+    getArtistBySlug(slug),
+    getEnrichedPortfolioItemsByArtist(slug),
+  ]);
+
+  // ✅ Handle 404
+  if (!artist) {
+    notFound();
+  }
 
   return (
-    <div className="bg-background-light">
-      <Header />
-      <main className="pt-24 min-h-screen">
-        <div className="container mx-auto px-6 text-center">
-          <h1 className="text-4xl font-bold text-brand-green-dark">صفحه پروفایل هنرمند</h1>
-          <p className="text-lg mt-4 text-gray-600">این صفحه برای هنرمند با شناسه زیر است:</p>
-          <p className="mt-2 text-2xl font-bold text-accent-pink bg-background-section p-4 rounded-lg inline-block">
-            {id}
-          </p>
-        </div>
-      </main>
-      <Footer />
-    </div>
+    <main className="bg-background-light min-h-screen">
+      {/* ✅ Suspense for streaming */}
+      <Suspense fallback={<ArtistProfileSkeleton />}>
+        {/* Artist Info Section */}
+        <section className="container mx-auto px-6 py-12">
+          <ArtistInfoCard artist={artist} />
+        </section>
+
+        {/* Portfolio Section */}
+        <section className="container mx-auto px-6 pb-16">
+          <h2 className="text-3xl font-bold text-center mb-10 text-brand-green-dark">
+            نمونه‌کارهای {artist.name}
+          </h2>
+          <ArtistPortfolioGrid items={portfolioItems} />
+        </section>
+      </Suspense>
+    </main>
   );
 }
+
+// ✅ ISR: Revalidate every hour
+export const revalidate = 3600;

@@ -26,7 +26,6 @@ export default function ServicePortfolioGrid({
   portfolioItems,
   className = '',
 }: ServicePortfolioGridProps) {
-  // ✅ Early return برای بهبود readability
   if (!portfolioItems?.length) {
     return (
       <div className="col-span-full py-12 text-center">

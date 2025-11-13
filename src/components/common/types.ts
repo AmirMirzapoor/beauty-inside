@@ -1,7 +1,4 @@
-/**
- * Global Type Definitions
- * @version 1.0.0
- */
+import type { ReactNode } from 'react';
 
 // NAVIGATION
 export type NavLink = {
@@ -13,7 +10,7 @@ export type NavLink = {
 export interface Service {
   id: number;
   slug: string;
-  icon?: React.ReactNode;
+  iconKey: string;
   title: string;
   description: string;
 }
@@ -27,7 +24,7 @@ export interface Artist {
   specialty: string;
   bio: string;
   rating: number;
-  experience?: string; // ✅ اضافه کردن فیلد مفید
+  experience?: string;
 }
 
 // PORTFOLIO
@@ -55,6 +52,6 @@ export interface GalleryImage {
 // SOCIAL
 export interface SocialLink {
   href: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   label: string;
 }

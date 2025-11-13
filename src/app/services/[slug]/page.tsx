@@ -3,8 +3,6 @@ import type { Metadata } from 'next';
 import ServicePortfolioGrid from '@/components/sections/ServicePortfolioGrid';
 import { getServiceBySlug, getEnrichedPortfolioItemsByService, getAllServiceSlugs } from '@/lib/data';
 
-// ✅ REMOVE Header/Footer - به layout.tsx منتقل شوند
-
 /* -------------------------------------------------------------------------- */
 /*                     STATIC PATHS GENERATION (ISR)                          */
 /* -------------------------------------------------------------------------- */
@@ -68,7 +66,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         description: service.description,
         provider: {
           '@type': 'LocalBusiness',
-          name: 'سالن زیبایی اینساید',
+          name: 'سالن زیبای درون',
         },
       }),
     },
@@ -125,8 +123,6 @@ export default async function ServiceDetailPage({ params }: Props) {
           />
         </section>
       </article>
-
-      {/* ✅ Footer removed - now in app/layout.tsx */}
     </main>
   );
 }

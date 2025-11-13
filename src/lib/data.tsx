@@ -14,6 +14,7 @@ import type {
 } from '@/components/common/types';
 import { GiHairStrands, GiSpikedDragonHead, GiLotus } from 'react-icons/gi';
 import { TbBrandDaysCounter } from 'react-icons/tb';
+import { FaInstagram, FaTelegram, FaWhatsapp } from "react-icons/fa";
 
 /* -------------------------------------------------------------------------- */
 /*                          ICON MAPPER (CLIENT-SIDE)                         */
@@ -41,10 +42,10 @@ export const navLinks: NavLink[] = [
 ];
 
 export const services: Service[] = [
-  { id: 1, slug: 'hair-services', icon: 'hair', title: 'خدمات مو', description: 'انواع کوتاهی، رنگ و لایت، کراتین و احیای مو.' },
-  { id: 2, slug: 'nail-services', icon: 'nail', title: 'خدمات ناخن', description: 'مانیکور، پدیکور، کاشت و طراحی ناخن.' },
-  { id: 3, slug: 'makeup-services', icon: 'makeup', title: 'میکاپ و گریم', description: 'میکاپ حرفه‌ای عروس، گریم سینمایی.' },
-  { id: 4, slug: 'skincare-services', icon: 'skincare', title: 'خدمات پوست', description: 'فیشیال تخصصی، پاکسازی و آبرسانی.' },
+  { id: 1, slug: 'hair-services', iconKey: 'hair', title: 'خدمات مو', description: 'انواع کوتاهی، رنگ و لایت، کراتین و احیای مو.' },
+  { id: 2, slug: 'nail-services', iconKey: 'nail', title: 'خدمات ناخن', description: 'مانیکور، پدیکور، کاشت و طراحی ناخن.' },
+  { id: 3, slug: 'makeup-services', iconKey: 'makeup', title: 'میکاپ و گریم', description: 'میکاپ حرفه‌ای عروس، گریم سینمایی.' },
+  { id: 4, slug: 'skincare-services', iconKey: 'skincare', title: 'خدمات پوست', description: 'فیشیال تخصصی، پاکسازی و آبرسانی.' },
 ];
 
 export const galleryImages: GalleryImage[] = [
@@ -55,9 +56,9 @@ export const galleryImages: GalleryImage[] = [
 ];
 
 export const socialLinks: SocialLink[] = [
-  { href: 'https://instagram.com', icon: 'instagram', label: 'Instagram' },
-  { href: 'https://t.me', icon: 'telegram', label: 'Telegram' },
-  { href: 'https://wa.me', icon: 'whatsapp', label: 'Whatsapp' },
+  { href: 'https://instagram.com', icon: <FaInstagram size={24} />, label: 'Instagram' },
+  { href: 'https://t.me', icon: <FaTelegram size={24} />, label: 'Telegram' },
+  { href: 'https://wa.me', icon: <FaWhatsapp size={24} />, label: 'Whatsapp' },
 ];
 
 export const artists: Artist[] = [
@@ -150,6 +151,28 @@ export const getEnrichedPortfolioItemsByService = cache(
       ...item,
       service,
       artist: getArtistById(item.artistId),
+    }));
+  }
+);
+
+/* -------------------------------------------------------------------------- */
+/*                      PORTFOLIO FETCHERS BY ARTIST                          */
+/* -------------------------------------------------------------------------- */
+export const getPortfolioItemsByArtist = cache(
+  (slug: string): PortfolioItem[] => {
+    const artist = getArtistBySlug(slug);
+    if (!artist) return [];
+    return portfolioItems.filter((p) => p.artistId === artist.id);
+  }
+);
+
+export const getEnrichedPortfolioItemsByArtist = cache(
+  (slug: string): EnrichedPortfolioItem[] => {
+    const items = getPortfolioItemsByArtist(slug);
+    return items.map((item) => ({
+      ...item,
+      artist: getArtistById(item.artistId),
+      service: getServiceBySlug(item.serviceSlug),
     }));
   }
 );
