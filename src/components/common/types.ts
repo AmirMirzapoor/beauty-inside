@@ -1,47 +1,57 @@
 import type { ReactNode } from "react";
 
-// لینک‌های ناوبری (navbar)
-export interface NavLink {
+// NAVIGATION
+export type NavLink = {
   href: string;
   label: string;
 }
 
-// خدمات (Services)
+// SERVICES
 export interface Service {
   id: number;
   slug: string;
-  icon: ReactNode;
+  iconKey: string;
   title: string;
   description: string;
 }
 
-// تصاویر گالری
+// ARTISTS
+export interface Artist {
+  id: number;
+  slug: string;
+  name: string;
+  profilePic: string;
+  specialty: string;
+  bio: string;
+  rating: number;
+  experience?: string;
+}
+
+// PORTFOLIO
+export interface PortfolioItem {
+  id: number;
+  image: string;
+  serviceSlug: string;
+  artistId: number;
+  alt?: string;
+  createdAt?: string; // ✅ برای مرتب‌سازی زمانی
+}
+
+export type EnrichedPortfolioItem = PortfolioItem & {
+  artist?: Artist;
+  service?: Service;
+};
+
+// GALLERY
 export interface GalleryImage {
   src: string;
   alt: string;
+  priority?: boolean;
 }
 
-// شبکه‌های اجتماعی
+// SOCIAL
 export interface SocialLink {
   href: string;
   icon: ReactNode;
   label: string;
-}
-
-// هنرمندان (Artists)
-export interface Artist {
-  id: number;
-  name: string;
-  profilePic: string; // مسیر عکس پروفایل
-  specialty: string; // تخصص
-  bio: string;
-  rating: number; // میانگین امتیاز از ۵
-}
-
-// نمونه‌کارها (Portfolio)
-export interface PortfolioItem {
-  id: number;
-  image: string; // مسیر عکس نمونه کار
-  serviceSlug: string; // به کدام خدمت مرتبط است
-  artistId: number; // شناسه هنرمند
 }
