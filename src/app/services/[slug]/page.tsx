@@ -99,8 +99,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   };
 
   return (
-    <main className="bg-background-light min-h-screen">
-      {/* ✅ Header removed - now in app/layout.tsx */}
+    <main className="bg-green-300 min-h-screen">
       
       {/* ✅ استفاده از semantic HTML */}
       <article className="pt-24">

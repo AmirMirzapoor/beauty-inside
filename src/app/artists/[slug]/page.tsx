@@ -82,7 +82,7 @@ export default async function ArtistProfilePage({ params }: Props) {
   }
 
   return (
-    <main className="bg-background-light min-h-screen">
+    <main className="bg-red-300 min-h-screen">
       {/* ✅ Suspense for streaming */}
       <Suspense fallback={<ArtistProfileSkeleton />}>
         {/* Artist Info Section */}

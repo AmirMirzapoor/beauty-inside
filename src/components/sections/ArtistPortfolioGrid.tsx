@@ -1,3 +1,5 @@
+"use client";
+
 import Image from 'next/image';
 import MotionWrapper from '@/components/common/MotionWrapper';
 import { staggerContainer } from '@/components/common/animations';
