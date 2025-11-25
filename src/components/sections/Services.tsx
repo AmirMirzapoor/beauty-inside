@@ -1,57 +1,76 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { staggerContainer, itemVariants } from "@/components/common/animations";
-import SectionTitle from "@/components/common/Titles";
-import { services, getServiceIcon } from "@/lib/data";
-import type { FC } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { services, getServiceIcon } from "@/lib/data";
+import SectionTitle from "@/components/common/Titles";
+import { FiArrowLeft } from "react-icons/fi"; // آیکون فلش برای دکمه‌ها
 
-const ServicesSection: FC = () => (
-  <section id="services" className="py-20 bg-green-300">
-    <div className="container mx-auto px-6">
-      <SectionTitle
-        title="خدمات تخصصی ما"
-        subtitle="با بالاترین کیفیت و جدیدترین متدها در خدمت شما هستیم."
-      />
+export default function Services() {
+  return (
+    <section id="services" className="relative py-24 bg-background-section overflow-hidden">
+      {/* پترن پس‌زمینه محو برای زیبایی */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
+        <div className="absolute right-0 top-0 w-96 h-96 bg-brand-pink rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute left-0 bottom-0 w-64 h-64 bg-brand-green rounded-full blur-[80px] -translate-x-1/2 translate-y-1/2" />
+      </div>
 
-      <motion.div
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
-      >
-        {services.map((service) => (
-          <Link href={`/services/${service.slug}`} key={service.id} prefetch>
-            <motion.div
-              variants={itemVariants}
-              whileHover={{ y: -8 }}
-              className="bg-red-300 p-8 rounded-2xl shadow-xl 
-                          text-center group duration-300 ease-out-expo"
+      <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionTitle
+          title="خدمات تخصصی ما"
+          subtitle="تجربه‌ای متفاوت از زیبایی با جدیدترین متدهای روز دنیا"
+        />
+
+        <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-4 mt-12">
+          {services.map((service, index) => (
+            <Link 
+              href={`/services/${service.slug}`} 
+              key={service.id} 
+              className="group block h-full"
+              prefetch={true}
             >
-              <div className="flex justify-center mb-4">
-                <div 
-                  className="bg-white text-brand-green p-4 rounded-full 
-                              transition-colors duration-300 
-                              group-hover:bg-green-300 group-hover:text-white"
-                >
-                  {getServiceIcon(service.iconKey, 28)}
+              <motion.article
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative h-full bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 
+                           border border-white/50 shadow-sm hover:shadow-xl hover:shadow-brand-pink/10 
+                           transition-all duration-300 group-hover:-translate-y-2 overflow-hidden"
+              >
+                {/* نوار رنگی بالای کارت که در هاور پر می‌شود */}
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-pink to-brand-gold 
+                              transition-all duration-500 group-hover:h-1.5" />
+
+                <div className="flex flex-col h-full">
+                  {/* آیکون */}
+                  <div className="mb-6 inline-flex items-center justify-center w-16 h-16 
+                                rounded-2xl bg-green-300 text-brand-green-dark 
+                                shadow-inner transition-transform duration-500 
+                                group-hover:scale-110 group-hover:bg-brand-green-dark group-hover:text-white">
+                    {getServiceIcon(service.iconKey, 32)}
+                  </div>
+
+                  {/* متن‌ها */}
+                  <h3 className="text-xl font-bold text-brand-green-dark mb-3 group-hover:text-brand-pink transition-colors">
+                    {service.title}
+                  </h3>
+                  
+                  <p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3 flex-grow">
+                    {service.description}
+                  </p>
+
+                  {/* دکمه مشاهده بیشتر */}
+                  <div className="flex items-center text-sm font-semibold text-brand-gold group-hover:text-brand-pink transition-colors">
+                    <span>مشاهده جزئیات</span>
+                    <FiArrowLeft className="w-4 h-4 mr-2 transition-transform duration-300 group-hover:-translate-x-1" />
+                  </div>
                 </div>
-              </div>
-
-              <h3 className="text-xl font-bold mb-2 text-brand-green-dark">
-                {service.title}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {service.description}
-              </p>
-            </motion.div>
-          </Link>
-        ))}
-      </motion.div>
-    </div>
-  </section>
-);
-
-export default ServicesSection;
+              </motion.article>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

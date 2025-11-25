@@ -9,18 +9,14 @@
 }
 
 body {
-  font-family: var(--font-vazirmatn), sans-serif;
+  /* فونت وزیرمتن را موقتا با فونت سیستم جایگزین کردیم تا خطا رفع شود */
+  font-family: system-ui, -apple-system, sans-serif;
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #fef7ff; /* background-light */
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar for a more elegant look */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -28,14 +24,6 @@ body {
   background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-  background: #f5569b; /* gold color */
+  background: #f5569b; 
   border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #f5569b; /* slightly darker gold */
-}
-
-/* Added for smooth transitions in layouts */
-.ease-out-expo {
-  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
 }

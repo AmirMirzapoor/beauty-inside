@@ -13,6 +13,7 @@ export interface Service {
   iconKey: string;
   title: string;
   description: string;
+  price: number;
 }
 
 // ARTISTS

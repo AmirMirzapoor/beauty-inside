@@ -127,4 +127,4 @@ export default async function ServiceDetailPage({ params }: Props) {
 }
 
 // ✅ ISR با بازه 1 ساعت برای به‌روزرسانی محتوا
-export const revalidate = 3600; // 1 hour instead of 60 seconds
+export const revalidate = 3600;

@@ -11,22 +11,21 @@ const config = {
         vazir: ["var(--font-vazir)"],
       },
       colors: {
-        // تعریف سیستم رنگی جدید
         brand: {
           pink: {
-            DEFAULT: '#f5569b', // روی اصلی
-            light: '#ff8ec5',
-            dark: '#d63384',
+            DEFAULT: "#f5569b", // روی اصلی
+            light: "#ff8ec5",
+            dark: "#d63384",
           },
           green: {
-            DEFAULT: '#10b981', // سبز اصلی
-            light: '#34d399',
-            dark: '#047857',
+            DEFAULT: "#10b981", // سبز اصلی
+            light: "#34d399",
+            dark: "#047857",
           },
           gold: {
-            DEFAULT: '#f59e0b',
-            light: '#fbbf24',
-            dark: '#d97706',
+            DEFAULT: "#f59e0b",
+            light: "#fbbf24",
+            dark: "#d97706",
           },
         },
         "brand-green": {
@@ -38,8 +37,8 @@ const config = {
           light: "#F5C7C8", // صورتی روشن‌تر
         },
         background: {
-          light: "#fef7ff", // پس‌زمینه اصلی سایت (بسیار روشن با ته‌رنگ سبز)
-          section: "#f3f4f6", // پس‌زمینه بخش‌های مجزا
+          light: "#80F0A5", // پس‌زمینه اصلی سایت (بسیار روشن با ته‌رنگ سبز)
+          section: "#B2DCA1", // پس‌زمینه بخش‌های مجزا
         },
         "accent-yellow": "#F3D582", // زرد ملایم برای جزئیات خاص (در صورت نیاز)
       },

@@ -42,10 +42,10 @@ export const navLinks: NavLink[] = [
 ];
 
 export const services: Service[] = [
-  { id: 1, slug: 'hair-services', iconKey: 'hair', title: 'خدمات مو', description: 'انواع کوتاهی، رنگ و لایت، کراتین و احیای مو.' },
-  { id: 2, slug: 'nail-services', iconKey: 'nail', title: 'خدمات ناخن', description: 'مانیکور، پدیکور، کاشت و طراحی ناخن.' },
-  { id: 3, slug: 'makeup-services', iconKey: 'makeup', title: 'میکاپ و گریم', description: 'میکاپ حرفه‌ای عروس، گریم سینمایی.' },
-  { id: 4, slug: 'skincare-services', iconKey: 'skincare', title: 'خدمات پوست', description: 'فیشیال تخصصی، پاکسازی و آبرسانی.' },
+  { id: 1, slug: 'hair-services', iconKey: 'hair', title: 'خدمات مو', description: 'انواع کوتاهی، رنگ و لایت، کراتین و احیای مو.', price: 2500000 },
+  { id: 2, slug: 'nail-services', iconKey: 'nail', title: 'خدمات ناخن', description: 'مانیکور، پدیکور، کاشت و طراحی ناخن.', price: 450000 },
+  { id: 3, slug: 'makeup-services', iconKey: 'makeup', title: 'میکاپ و گریم', description: 'میکاپ حرفه‌ای عروس، گریم سینمایی.', price: 350000 },
+  { id: 4, slug: 'skincare-services', iconKey: 'skincare', title: 'خدمات پوست', description: 'فیشیال تخصصی، پاکسازی و آبرسانی.', price: 800000 },
 ];
 
 export const galleryImages: GalleryImage[] = [
@@ -91,6 +91,16 @@ export const artists: Artist[] = [
     bio: 'میکاپ تخصصی عروس و گریم سینمایی.',
     rating: 5.0,
     experience: '12 سال',
+  },
+  {
+    id: 4,
+    slug: "mina-afshar",
+    name: "مینا افشار",
+    specialty: "ناخن‌کار حرفه‌ای",
+    bio: "طراح تخصصی ناخن و مسلط به طراحی‌های مینیاتوری.",
+    profilePic: "/images/artist2.jpg",
+    rating: 4.8,
+    experience: "۶ سال",
   },
 ];
 
