@@ -10,6 +10,7 @@ import type {
   Artist,
   PortfolioItem,
   SocialLink,
+  BlogPost,
   EnrichedPortfolioItem,
 } from '@/components/common/types';
 import { GiHairStrands, GiSpikedDragonHead, GiLotus } from 'react-icons/gi';
@@ -116,6 +117,54 @@ const portfolioItems: PortfolioItem[] = [
   { id: 9, image: '/images/portfolio/hair3.jpg', serviceSlug: 'hair-services', artistId: 3, createdAt: '2024-06-10' },
 ];
 
+export const blogPosts: BlogPost[] = [
+  {
+    id: "1",
+    slug: "hair-keratin-care",
+    title: "مراقبت‌های بعد از کراتین مو؛ بایدها و نبایدها",
+    excerpt: "اگر موهایتان را کراتین کرده‌اید، برای ماندگاری بیشتر و حفظ سلامت موهایتان باید این نکات طلایی را بدانید.",
+    content: `
+      <p>کراتین مو یکی از محبوب‌ترین روش‌ها برای صاف و احیا کردن موهای آسیب‌دیده است. اما کار شما بعد از خروج از سالن تمام نمی‌شود! مراقبت‌های بعد از کراتین به اندازه خود پروسه اهمیت دارد.</p>
+      <h3>۱. شستشو را به تعویق بیندازید</h3>
+      <p>تا ۳ روز بعد از انجام کراتین، نباید موهایتان را بشویید یا حتی خیس کنید. این زمان به مواد کراتین اجازه می‌دهد تا کاملاً در کوتیکول مو تثبیت شوند.</p>
+      <h3>۲. شامپوی مناسب انتخاب کنید</h3>
+      <p>استفاده از شامپوهای بدون سولفات (Sulfate-free) حیاتی است. سولفات‌ها دشمن اصلی کراتین هستند و باعث از بین رفتن سریع آن می‌شوند.</p>
+    `,
+    coverImage: "/images/blog/keratin-care.jpg",
+    author: "سارا اکبری",
+    date: "1403/02/15",
+    category: "مراقبت مو",
+    readingTime: "5 دقیقه",
+    tags: ["کراتین", "سلامت مو", "شامپو فری سولفات"],
+  },
+  {
+    id: "2",
+    slug: "summer-skincare-routine",
+    title: "روتین پوستی تابستانی؛ خداحافظی با آفتاب‌سوختگی",
+    excerpt: "در فصل گرما پوست نیاز به مراقبت‌های ویژه‌ای دارد. روتین پوستی خود را با تغییر فصل به‌روز کنید.",
+    content: "محتوای کامل مقاله...",
+    coverImage: "/images/blog/summer-skin.jpg",
+    author: "دکتر مهدوی",
+    date: "1403/03/01",
+    category: "پوست و زیبایی",
+    readingTime: "7 دقیقه",
+    tags: ["ضد آفتاب", "آبرسانی", "پوست چرب"],
+  },
+  {
+    id: "3",
+    slug: "nail-design-trends-2025",
+    title: "ترندهای طراحی ناخن ۲۰۲۵ که باید امتحان کنید",
+    excerpt: "از فرنچ‌های رنگی تا کروم‌های آینه‌ای؛ جدیدترین مدل‌های ناخن که امسال مد شده‌اند را ببینید.",
+    content: "محتوای کامل مقاله...",
+    coverImage: "/images/blog/nail-trends.jpg",
+    author: "مریم رضایی",
+    date: "1403/01/20",
+    category: "ناخن",
+    readingTime: "4 دقیقه",
+    tags: ["طراحی ناخن", "ترند ۲۰۲۵", "کاشت ژل"],
+  },
+];
+
 /* -------------------------------------------------------------------------- */
 /*                         CACHED DATA ACCESSORS                              */
 /* -------------------------------------------------------------------------- */
@@ -187,9 +236,18 @@ export const getEnrichedPortfolioItemsByArtist = cache(
   }
 );
 
+export async function getAllBlogSlugs() {
+  return blogPosts.map(post => post.slug);
+}
+
+export async function getBlogPostBySlug(slug: string) {
+  return blogPosts.find(post => post.slug === slug);
+}
+
 /* -------------------------------------------------------------------------- */
 /*                         STATIC PATH GENERATORS                              */
 /* -------------------------------------------------------------------------- */
 // ✅ برای generateStaticParams در صفحات داینامیک
 export const getAllServiceSlugs = (): string[] => services.map(s => s.slug);
 export const getAllArtistSlugs = (): string[] => artists.map(a => a.slug);
+

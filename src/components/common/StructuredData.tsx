@@ -1,27 +1,31 @@
 import { SITE_CONFIG } from "../../lib/constants";
 
-// تعریف تایپ‌های دقیق برای جلوگیری از خطای no-explicit-any
-type SchemaType = "Organization" | "LocalBusiness" | "Service" | "Article" | "Breadcrumb";
+type SchemaType = "Organization" | "LocalBusiness" | "Service" | "Article" | "Breadcrumb" | "WebPage";
 
-interface ServiceData {
-  title: string;
-  description: string;
-  price: string | number;
+// تعریف یک اینترفیس جامع برای تمام انواع داده‌ها
+// تمام فیلدها اختیاری هستند تا بتوانیم هم آبجکت سرویس و هم مقاله را به آن پاس بدهیم
+interface UnifiedData {
+  title?: string;
+  description?: string;
+  price?: string | number;
+  excerpt?: string;       // مخصوص مقاله
+  coverImage?: string;    // مخصوص مقاله
+  author?: string;        // مخصوص مقاله
+  date?: string;          // مخصوص مقاله
+  slug?: string;          // مخصوص مقاله
 }
 
 interface StructuredDataProps {
   type: SchemaType;
-  data?: ServiceData; // استفاده از تایپ دقیق به جای any
+  data?: UnifiedData; // استفاده از تایپ مشخص به جای any
   breadcrumbs?: { name: string; item: string }[];
 }
 
 export default function StructuredData({ type, data, breadcrumbs }: StructuredDataProps) {
-  // استفاده از Record<string, unknown> به جای any برای آبجکت‌هایی که ساختار دینامیک دارند
   let schema: Record<string, unknown> = {};
 
   switch (type) {
     case "LocalBusiness":
-      // حیاتی برای GEO (جستجوی محلی و مپس)
       schema = {
         "@context": "https://schema.org",
         "@type": "BeautySalon",
@@ -50,7 +54,6 @@ export default function StructuredData({ type, data, breadcrumbs }: StructuredDa
       break;
 
     case "Service":
-      // بررسی می‌کنیم که دیتا وجود داشته باشد
       if (data) {
         schema = {
           "@context": "https://schema.org",
@@ -72,6 +75,45 @@ export default function StructuredData({ type, data, breadcrumbs }: StructuredDa
           },
         };
       }
+      break;
+
+    case "Article":
+      if (data) {
+        schema = {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: data.title,
+          description: data.excerpt || data.description, // فال‌بک به description
+          image: data.coverImage ? [`${SITE_CONFIG.url}${data.coverImage}`] : undefined,
+          author: {
+            "@type": "Person",
+            name: data.author || SITE_CONFIG.name,
+          },
+          publisher: {
+            "@type": "Organization",
+            name: SITE_CONFIG.name,
+            logo: {
+              "@type": "ImageObject",
+              url: `${SITE_CONFIG.url}/logo.png`,
+            },
+          },
+          datePublished: data.date,
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `${SITE_CONFIG.url}/blog/${data.slug}`,
+          },
+        };
+      }
+      break;
+
+    case "WebPage":
+      schema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: SITE_CONFIG.name,
+        url: SITE_CONFIG.url,
+        description: SITE_CONFIG.description,
+      };
       break;
       
     case "Breadcrumb":

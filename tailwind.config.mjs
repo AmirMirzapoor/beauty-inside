@@ -13,7 +13,7 @@ const config = {
       colors: {
         brand: {
           pink: {
-            DEFAULT: "#f5569b", // روی اصلی
+            DEFAULT: "#f5569b", // صورتی اصلی
             light: "#ff8ec5",
             dark: "#d63384",
           },
@@ -37,10 +37,10 @@ const config = {
           light: "#F5C7C8", // صورتی روشن‌تر
         },
         background: {
-          light: "#80F0A5", // پس‌زمینه اصلی سایت (بسیار روشن با ته‌رنگ سبز)
+          light: "#80F0A5", // پس‌زمینه اصلی سایت
           section: "#B2DCA1", // پس‌زمینه بخش‌های مجزا
         },
-        "accent-yellow": "#F3D582", // زرد ملایم برای جزئیات خاص (در صورت نیاز)
+        "accent-yellow": "#F3D582", // زرد ملایم
       },
       transitionTimingFunction: {
         "out-expo": "cubic-bezier(0.19, 1, 0.22, 1)",
@@ -48,9 +48,36 @@ const config = {
       textStroke: {
         gold: "1px gold",
       },
+      // تنظیمات تایپوگرافی برای زبان فارسی
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            color: theme('colors.gray.700'),
+            h1: {
+              color: theme('colors.brand-green.dark'),
+            },
+            h2: {
+              color: theme('colors.brand-green.dark'),
+            },
+            h3: {
+              color: theme('colors.brand-green.DEFAULT'),
+            },
+            strong: {
+              color: theme('colors.brand-pink.DEFAULT'),
+            },
+            a: {
+              color: theme('colors.brand-pink.DEFAULT'),
+              '&:hover': {
+                color: theme('colors.brand-pink.dark'),
+              },
+            },
+          },
+        },
+      }),
     },
   },
   plugins: [
+    require('@tailwindcss/typography'),
     function ({ addUtilities }) {
       addUtilities({
         ".text-stroke-gold": {

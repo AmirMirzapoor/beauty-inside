@@ -56,3 +56,18 @@ export interface SocialLink {
   icon: ReactNode;
   label: string;
 }
+
+// BLOG
+export interface BlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string; // در پروژه واقعی این می‌تواند HTML یا Markdown باشد
+  coverImage: string;
+  author: string;
+  date: string;
+  category: string;
+  readingTime: string;
+  tags: string[];
+}
