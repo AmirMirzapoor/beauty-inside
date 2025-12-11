@@ -40,7 +40,7 @@ const HeroSection: FC = () => (
           <p className="text-lg md:text-xl text-gray-100 mb-8 leading-relaxed">
             با بهره‌گیری از برترین متخصصان و متریال درجه یک، زیبایی طبیعی خود را به اوج برسانید.
             {/* استفاده از گیومه فارسی برای جلوگیری از خطای بیلد */}
-            ما در «زیبای درون» منتظر درخشش شما هستیم.
+             ما در «زیبای درون» منتظر درخشش شما هستیم.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">

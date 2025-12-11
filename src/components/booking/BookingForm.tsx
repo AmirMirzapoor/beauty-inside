@@ -132,14 +132,14 @@ export default function BookingForm() {
   // حالت فرم (Form View)
   // ---------------------------------------------------------------------------
   return (
-    <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 relative overflow-hidden">
+    <div className="bg-white rounded-3xl p-8 shadow-xl border border-brand-gold-light relative overflow-hidden">
       
       <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-brand-pink to-brand-gold"></div>
 
       {/* هدر هوشمند */}
       {artistSlug && (
-        <div className="mb-8 bg-brand-green-light/10 border border-brand-green/10 rounded-2xl p-4 flex items-start gap-4">
-          <div className="bg-white p-2.5 rounded-full shadow-sm text-brand-green-dark mt-1">
+        <div className="mb-8 bg-brand-gold-light/10 border border-brand-gold-light rounded-2xl p-4 flex items-start gap-4">
+          <div className="bg-brand-gold-light p-2.5 rounded-full shadow-sm text-brand-green-dark mt-1">
             <FaUser className="text-xl" />
           </div>
           <div>
@@ -148,7 +148,7 @@ export default function BookingForm() {
               شما در حال رزرو نوبت با <span className="font-bold text-brand-pink text-base mx-1">{artistName}</span> هستید.
             </p>
             {isServicePreDetermined && (
-              <div className="mt-2 inline-flex items-center gap-2 px-3 py-1 bg-white rounded-lg border border-gray-200 text-xs text-gray-500">
+              <div className="mt-2 inline-flex items-center gap-2 px-3 py-1 bg-brand-gold/45 rounded-lg border border-gray-200 text-xs text-gray-500">
                 <FaCheckCircle className="text-brand-pink" />
                 <span>مدل انتخابی شماره {styleId} ثبت شد</span>
               </div>

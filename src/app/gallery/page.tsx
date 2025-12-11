@@ -100,17 +100,17 @@ export default function GalleryPage() {
                     {/* اطلاعات آرتیست (پایین تصویر) */}
                     {item.artist && (
                       <Link 
-                        href={`/artists/${item.artist.slug}`}
-                        className="absolute bottom-0 right-4 left-4 bg-white/95 backdrop-blur-md p-3 rounded-2xl flex items-center gap-3 translate-y-full group-hover:translate-y-2 transition-transform duration-300 delay-150 shadow-lg z-20 cursor-pointer hover:bg-brand-pink hover:text-white group/artist"
-                      >
-                        <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-brand-pink group-hover/artist:border-white transition-colors">
-                          <Image src={item.artist.profilePic} alt={item.artist.name} fill className="object-cover" />
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-sm font-bold group-hover/artist:text-white text-gray-800 transition-colors">اثر: {item.artist.name}</p>
-                          <p className="text-[10px] text-gray-500 group-hover/artist:text-white/80 transition-colors">{item.artist.specialty}</p>
-                        </div>
-                      </Link>
+                      href={`/artists/${item.artist.slug}`}
+                      className="absolute bottom-0 right-4 left-4 bg-white/95 p-3 rounded-2xl flex items-center gap-3 translate-y-[105%] group-hover:translate-y-[-13%] transition-transform duration-300 delay-150 shadow-lg z-20 cursor-pointer hover:bg-brand-pink hover:text-white group/artist"
+                    >                    
+                      <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-brand-pink group-hover/artist:border-white transition-colors">
+                        <Image src={item.artist.profilePic} alt={item.artist.name} fill className="object-cover" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-bold group-hover/artist:text-white text-gray-800 transition-colors">اثر: {item.artist.name}</p>
+                        <p className="text-[10px] text-gray-500 group-hover/artist:text-white/80 transition-colors">{item.artist.specialty}</p>
+                      </div>
+                    </Link>                    
                     )}
                   </div>
                 </motion.div>

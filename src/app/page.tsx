@@ -15,14 +15,14 @@ export default function Home() {
       {/* استفاده از تگ article یا section برای سمنتیک بودن */}
       <article>
         <Hero />
-        
-        {/* اضافه کردن ID برای اسکرول نرم */}
-        <section id="services">
-          <Services />
-        </section>
 
+        {/* اضافه کردن ID برای اسکرول نرم */}
         <section id="gallery">
           <Gallery />
+        </section>
+
+        <section id="services">
+          <Services />
         </section>
 
         <section id="about">

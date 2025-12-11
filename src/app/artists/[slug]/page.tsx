@@ -86,15 +86,12 @@ export default async function ArtistProfilePage({ params }: Props) {
       {/* ✅ Suspense for streaming */}
       <Suspense fallback={<ArtistProfileSkeleton />}>
         {/* Artist Info Section */}
-        <section className="container mx-auto px-6 py-12">
+        <section className="container mx-auto px-6 py-20">
           <ArtistInfoCard artist={artist} />
         </section>
 
         {/* Portfolio Section */}
-        <section className="container mx-auto px-6 pb-16">
-          <h2 className="text-3xl font-bold text-center mb-10 text-brand-green-dark">
-            نمونه‌کارهای {artist.name}
-          </h2>
+        <section className="container mx-auto px-6 py-40 pb-16">
           <ArtistPortfolioGrid items={portfolioItems} />
         </section>
       </Suspense>

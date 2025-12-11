@@ -40,12 +40,11 @@ export default function BookingPage() {
                   اگر هنوز مطمئن نیستید چه خدماتی برای شما مناسب است، می‌توانید مستقیماً با ما تماس بگیرید.
                 </p>
                 <a href="tel:+982112345678" className="flex items-center gap-4 text-white hover:text-brand-pink transition-colors group">
-                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-brand-pink transition-colors">
+                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-brand-pink-light transition-colors">
                       <FaPhoneAlt />
                     </div>
-                    {/* ✅ اصلاح جهت نمایش شماره تلفن با dir="ltr" */}
                     <span className="text-xl font-bold text-left" dir="ltr">
-                      +98 21 1234 5678
+                      021 1234 5678
                     </span>
                 </a>
               </div>

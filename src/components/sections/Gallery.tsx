@@ -12,7 +12,7 @@ const galleryItems = getAllEnrichedPortfolioItems().slice(0, 4);
 
 export default function Gallery() {
   return (
-    <section id="gallery" className="py-24 bg-white relative pb-32">
+    <section id="gallery" className="py-24 bg-background-section/70 relative pb-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           title="گالری هنر ما"
@@ -34,7 +34,7 @@ export default function Gallery() {
                   ${index === 0 ? 'col-span-2 row-span-2' : 'col-span-1'}
                 `}
               >
-                <div className="relative w-full h-full">
+                <div className="relative w-full h-full group">
                   <Image
                     src={item.image}
                     alt={item.alt || "نمونه کار"}
@@ -44,7 +44,7 @@ export default function Gallery() {
                   
                   {/* لایه هاور - دکمه رزرو */}
                   <div className="absolute inset-0 bg-brand-green-dark/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center backdrop-blur-sm z-10">
-                    <h3 className="text-white font-bold text-lg mb-1 translate-y-4 group-hover:translate-y-2 transition-transform duration-300 delay-75">
+                    <h3 className="text-white font-bold text-lg mb-2 translate-y-4 group-hover:translate-y-2 transition-transform duration-300 delay-75">
                       {item.alt}
                     </h3>
                     
@@ -61,7 +61,7 @@ export default function Gallery() {
                   {item.artist && (
                     <Link 
                       href={`/artists/${item.artist.slug}`}
-                      className="absolute bottom-3 right-3 left-3 bg-white/95 backdrop-blur-md p-2 rounded-xl flex items-center gap-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300 delay-150 shadow-lg z-20 cursor-pointer hover:bg-brand-pink hover:text-white group/artist"
+                      className="absolute bottom-0 right-3 left-3 bg-white/95 p-2 rounded-xl flex items-center gap-2 translate-y-[105%] group-hover:translate-y-[-13%] transition-transform duration-300 delay-150 shadow-lg z-20 cursor-pointer hover:bg-brand-pink hover:text-white group/artist"
                     >
                       <div className="relative w-8 h-8 rounded-full overflow-hidden border border-brand-pink group-hover/artist:border-white transition-colors flex-shrink-0">
                         <Image src={item.artist.profilePic} alt={item.artist.name} fill className="object-cover" />
@@ -81,7 +81,7 @@ export default function Gallery() {
         {/* دکمه مشاهده بیشتر با انیمیشن */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
           <Link href="/gallery" className="group flex flex-col items-center">
-            <span className="text-sm font-bold text-gray-400 group-hover:text-brand-pink transition-colors mb-2">مشاهده تمام تصاویر</span>
+            <span className="text-sm font-bold text-gray-500 group-hover:text-brand-pink transition-colors mb-2">مشاهده تمام تصاویر</span>
             <div className="w-12 h-12 rounded-full bg-white border border-gray-100 shadow-lg flex items-center justify-center group-hover:bg-brand-pink group-hover:text-white transition-all duration-300 animate-bounce">
               <FaChevronDown />
             </div>
