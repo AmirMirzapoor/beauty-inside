@@ -3,30 +3,36 @@
 /* -------------------------------------------------------------------------- */
 
 import { cache } from 'react';
-import type {
-  NavLink,
-  Service,
-  GalleryImage,
-  Artist,
-  PortfolioItem,
-  SocialLink,
-  EnrichedPortfolioItem,
-} from '@/components/common/types';
-import { GiHairStrands, GiSpikedDragonHead, GiLotus } from 'react-icons/gi';
-import { TbBrandDaysCounter } from 'react-icons/tb';
+import type { NavLink, Service, GalleryImage, Artist, PortfolioItem, SocialLink, EnrichedPortfolioItem } from '@/components/common/types';
+import Image from 'next/image';
 import { FaInstagram, FaTelegram, FaWhatsapp } from "react-icons/fa";
 
 /* -------------------------------------------------------------------------- */
 /* ICON MAPPER (CLIENT-SIDE)                         */
 /* -------------------------------------------------------------------------- */
+// ✅ این تابع حالا آیکون‌های SVG اختصاصی شما را برمی‌گرداند
 export const getServiceIcon = (iconKey: string, size = 30) => {
-  const icons: Record<string, React.ReactNode> = {
-    'hair': <GiHairStrands size={size} />,
-    'nail': <TbBrandDaysCounter size={size} />,
-    'makeup': <GiSpikedDragonHead size={size} />,
-    'skincare': <GiLotus size={size} />,
+  const iconPaths: Record<string, string> = {
+    'hair': '/icons/hair.svg',
+    'nail': '/icons/nail.svg',
+    'makeup': '/icons/makeup.svg',
+    'skincare': '/icons/facial.svg', // نگاشت facial به skincare
   };
-  return icons[iconKey] || null;
+
+  const src = iconPaths[iconKey];
+
+  if (!src) return null;
+
+  return (
+    <div style={{ width: size, height: size, position: 'relative' }}>
+      <Image 
+        src={src} 
+        alt={`${iconKey} icon`} 
+        fill 
+        className="object-contain" 
+      />
+    </div>
+  );
 };
 
 /* -------------------------------------------------------------------------- */

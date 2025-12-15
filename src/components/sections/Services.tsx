@@ -4,12 +4,12 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { services, getServiceIcon } from "@/lib/data";
 import SectionTitle from "@/components/common/Titles";
-import { FiArrowLeft } from "react-icons/fi"; // آیکون فلش برای دکمه‌ها
+import { FiArrowLeft } from "react-icons/fi";
 
 export default function Services() {
   return (
-    <section id="services" className="relative py-24 bg-background-section overflow-hidden">
-      {/* پترن پس‌زمینه محو برای زیبایی */}
+    <section id="services" className="relative py-24 bg-background-section/20 overflow-hidden">
+      {/* پترن پس‌زمینه */}
       <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
         <div className="absolute right-0 top-0 w-96 h-96 bg-brand-pink rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2" />
         <div className="absolute left-0 bottom-0 w-64 h-64 bg-brand-green rounded-full blur-[80px] -translate-x-1/2 translate-y-1/2" />
@@ -38,17 +38,22 @@ export default function Services() {
                            border border-white/50 shadow-sm hover:shadow-xl hover:shadow-brand-pink/10 
                            transition-all duration-300 group-hover:-translate-y-2 overflow-hidden"
               >
-                {/* نوار رنگی بالای کارت که در هاور پر می‌شود */}
+                {/* نوار رنگی بالای کارت */}
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-pink to-brand-gold 
                               transition-all duration-500 group-hover:h-1.5" />
 
                 <div className="flex flex-col h-full">
-                  {/* آیکون */}
+                  {/* آیکون با افکت تغییر رنگ در هاور */}
                   <div className="mb-6 inline-flex items-center justify-center w-16 h-16 
-                                rounded-2xl bg-green-300 text-brand-green-dark 
-                                shadow-inner transition-transform duration-500 
-                                group-hover:scale-110 group-hover:bg-brand-green-dark group-hover:text-white">
-                    {getServiceIcon(service.iconKey, 32)}
+                                rounded-2xl bg-background-light text-brand-green-dark 
+                                shadow-inner transition-all duration-500 
+                                group-hover:scale-110 group-hover:bg-brand-green-dark group-hover:shadow-lg">
+                    {/* استفاده از کلاس invert و brightness برای سفید کردن آیکون در حالت هاور
+                       این کلاس‌ها فقط روی تصاویر اعمال می‌شوند
+                    */}
+                    <div className="transition-all duration-500 group-hover:brightness-0 group-hover:invert">
+                      {getServiceIcon(service.iconKey, 32)}
+                    </div>
                   </div>
 
                   {/* متن‌ها */}
